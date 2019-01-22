@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+/*
+reduce + flux = redux
+
+redux是一个可预测的状态管理容器
+    三大核心
+        store   联系和管理
+        action  要处理哪一个逻辑
+        reducer 它是一个纯函数
+
+        //state默认的数据 =>一般默认为一个对象
+        //action 要处理哪一个逻辑
+        function reducer (state={num:0},action){  
+            switch(action.type){
+                case "ADD"
+                    let state = Object.assgin({},state);
+                    state.num ++;
+                    return state;  //state是为新的一个地址
+            }
+        }
+
+        store.dispatch({type:'ADD'})  //发起一个action
+
+        //store.getState()  读取状态数据
+
+        //监听状态的变化（只要状态发生了变化，就执行subscribe）
+        store.subscribe(() => console.log(store.getState())) 
+
+        
+        
+    Redux三大原则
+        1.单一数据源：
+            整个应用得state被存储再一棵object tree中，并且这个object tree只存在于唯一一个store中
+
+        2.state是只读得：
+            唯一改变state得方法基于是触发action,actionaction 是一个用于描述已发生事件的普通对象，
+            单一数据源得设计让react得组件之间得通信更加方便，同时也便于状态统一管理
+            store就是保持数据得地方，你也可以把它看成一个容器，整个应用只有一个store
+
+        3.使用纯函数来执行
+            为了描述action如何改变state tree,你需要编写 reducers
+            Reducer 只是一些纯函数，它接收先前的 state 和 action，并返回新的 state
+            纯函数：对于任何相同得输入有着相同得输出结果
+            简单来说：每次发起了action,action处理之后得结果为新地址得state
+
+        function reducer(state,action){
+              switch(action.type){
+                case "ADD"
+                    let state = Object.assgin({},state);
+                    state.num ++;
+                    return state;  //state是为新的一个地址
+            }
+        }
+
+        store.dispatch({type:'ADD'})  //发起一个action
+
+        store.getState()  读取状态数据
+
+        监听状态的变化（只要状态发生了变化，就执行subscribe）
+        store.subscribe(() => console.log(store.getState())) 
+
+Redux 的适用场景：多交互、多数据源。
+        用户的使用方式复杂s
+        不同身份的用户有不同的使用方式（比如普通用户和管理员）
+        多个用户之间可以协作
+        与服务器大量交互，或者使用了WebSocket
+        View要从多个来源获取数据
+
+可以考虑用到Redux 
+        某个组件的状态，需要共享
+        某个状态需要在任何地方都可以拿到
+        一个组件需要改变全局状态
+        一个组件需要改变另一个组件的状态
+
+
+安装redux
+        npm i react-redux
+        npm i redux
+
+        有router 有redux
+        <Provider>
+            <Router>
+            </Router>
+        </Provider>
+
+        只有redux,他只能为顶层
+        <Provider>
+        </Provider>
+
+
+
+reducer中 state可以是简单类型也可以是复合类型的
+        如果是简单类型是可以直接修改state
+
+        如果是复合类型的，每一次修改必须修改新的地址
+            两种写法：
+            1.  let on = Object.assion({},state);
+                on.num ++;
+                return on;
+            2.
+            return  {
+                ...state,
+                num:++stata.num
+            }
+
+
+
+用connect接收状态的时候  默认的是全部的数据全部返回    只需要自己要用的数据  这样写
+           export default connect(
+               (state)=>{
+                    return {num:state.r1}
+               }
+           )(APP)
+
+
+           connect(()=>{},()=>{})(app)  第一个是放函数的  第二个是放dispatch
+
+        也可以这样写
+               let mapStateProp = (state)=>{  //state状态管理器中的所有数据，也可以返回当前组件需要的数据
+                   return state; //必须返回对象
+               }
+
+               let mapDispatchProp = (dispatch,ownProps)=>{
+
+                    //ownProps只要接收到新的父级传进来的数据就会再运行一次
+                   return bindActionCreators(actionCreators, dispatch)
+               }
+
+                connect(mapStateProp,mapDispatchProp)(app) 
+
+           用到数据的时候  可以直接 this.props.num拿到对应的值
+
+
+
+        import {createStore} from 'redux'
+        import {Provider} from 'react-redux'
+        import App from './redux/app'
+        import reducer from './reducers/reducer'  //多个reducer引入的时候  这样引入
+
+        
+        
+*/
+    
+</script>
+</body>
+</html>
